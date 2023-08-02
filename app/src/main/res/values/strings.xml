@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">mySocialNetwork</string>
+
+    <!--login page-->
+
+    <string name="loginTitle">Вход</string>
+    <string name="usernameTextField">Имя пользователя</string>
+    <string name="passwordTextField">Пароль</string>
+    <string name="buttonLogin">Войти</string>
+    <string name="textButtonSignUp">Зарегистрироваться!</string>
+    <string name="textButtonForgotPass">Забыли пароль?</string>
+
+    <!--signUp page-->
+
+    <string name="signUpTitle">Регистрация</string>
+    <string name="emailTextField">Почта</string>
+    <string name="repaetPassword">Повтор пароля</string>
+    <string name="buttonSignUp">Зарегистрироваться</string>
+    <string name="alreadyHave">Уже есть аккаунт?</string>
+
+    <!--main page-->
+
+    <string name="mainTitle">Главная</string>
+    <string name="profile">Профиль</string>
+    <string name="logUot">Выход</string>
+
+    <!--Profile-->
+
+    <string name="editProfile">Редактировать профиль</string>
+    <string name="changePassword">Изменить пароль</string>
+    <string name="deleteAccount">Удалить аккаунт</string>
+    <string name="ageTextField">Возраст</string>
+    <string name="buttonSave">Сохранить</string>
+
+
+    <!--myNotes-->
+
+    <string name="editNote">Редактировать</string>
+    <string name="deleteNote">Удалить</string>
+    <string name="titleTextField">Название</string>
+    <string name="descriptionTextField">Описание</string>
+    <string name="buttonPublich">Опубликовать</string>
+    <string name="appBarTitleMyNotes">Мои записи</string>
+    <string name="appBarTitleAddNotes">Добавить запись</string>
+    <string name="title_activity_home_screen">homeScreen</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+
+    <string name="oldPassword">Введите текущий пароль</string>
+    <string name="newPassword">Придумайте новый пароль</string>
+
+
+
+</resources>
