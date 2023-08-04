@@ -3,26 +3,28 @@ package models;
 import java.io.File;
 
 public class posts {
+    private int Id;
     private String Title;
     private String Description;
-    private File PhotoURL;
+    private String Url;
 
 
-    // конструктор с фото
-    public posts(String Title,String Description,File PhotoURL) {
+    public posts(int Id,String Title,String Description,String Url) {
+        this.Id = Id;
         this.Title = Title;
         this.Description = Description;
-        this.PhotoURL = PhotoURL;
-    }
-    //конструктор без фото
-    public posts(String Title,String Description){
-        this.Title = Title;
-        this.Description = Description;
-        this.PhotoURL = null;
+        this.Url = Url;
     }
 
 
     //геттеры и сеттеры
+    public void setId(int Id){
+        this.Id =Id;
+    }
+    public int getId(){
+        return Id;
+    }
+
     public void setTitle(String Title){
         this.Title = Title;
     }
@@ -37,21 +39,21 @@ public class posts {
         return Description;
     }
 
-    public void setPhotoURL(File PhotoURL){
-        this.PhotoURL = PhotoURL;
+    public void setUrl(String Url){
+        this.Url = Url;
     }
-    public File getPhotoURL(){
-        return PhotoURL;
+    public String getUrl(){
+        return Url;
     }
 
 
-    //метод toString
     @Override
     public String toString() {
         return "posts{" +
-                "Title='" + Title + '\'' +
+                "Id=" + Id +
+                ", Title='" + Title + '\'' +
                 ", Description='" + Description + '\'' +
-                ", PhotoURL=" + PhotoURL +
+                ", Url='" + Url + '\'' +
                 '}';
     }
 }

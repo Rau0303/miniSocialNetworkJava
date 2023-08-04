@@ -7,24 +7,28 @@ public class User {
     private String FirstName;
     private String LastName;
     private String UserName;
+    private String Password;
     private File PhotoURL;
 
 
     // конструктор с фото
-    public User(int id,String FirstName,String LastName,String UserName,File PhotoUrl) {
+    public User(int id,String FirstName,String LastName,String UserName,String Password,File PhotoUrl) {
         this.id = id;
         this.FirstName = FirstName;
         this.LastName = LastName;
         this.UserName = UserName;
+        this.Password = Password;
         this.PhotoURL = PhotoUrl;
     }
     // конструктор без фото
-    public User(int id,String FirstName,String LastName,String UserName){
+    public User(int id,String FirstName,String LastName,String UserName, String Password){
         this.id = id;
         this.FirstName = FirstName;
         this.LastName = LastName;
         this.UserName = UserName;
+        this.Password = Password;
         this.PhotoURL = null;
+
     }
 
 
@@ -55,6 +59,13 @@ public class User {
     }
     public String getUserName(){
         return UserName;
+    }
+
+    public void setPassword(String Password){
+        this.Password = Password;
+    }
+    public String getPassword(){
+        return Password;
     }
 
     public void setPhotoURL(File PhotoURL){
