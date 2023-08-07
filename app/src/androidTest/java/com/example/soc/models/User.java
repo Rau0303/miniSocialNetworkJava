@@ -1,4 +1,4 @@
-package models;
+package com.example.soc.models;
 import java.io.File;
 import java.io.FileReader;
 

@@ -1,11 +1,30 @@
 package Services;
 
 
-import models.User;
+
+
+import static java.lang.System.out;
+
+import com.example.soc.models.User;
+import com.google.gson.Gson;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+
+
 
 public class Auth {
     private User user;
-    private String url = "http://192.168.31.107:5002/swagger/index.html";
+    private String url = "http://192.168.31.107:5002/api";
+
+    public Auth() throws IOException {
+    }
 
     public User getUser() {
         return user;
@@ -23,7 +42,16 @@ public class Auth {
         this.url = url;
     }
 
-    public void login(String UserName, String Password){
+    public String login(User user) throws IOException {
+
+       return  null;
+
 
     }
+
+
+
+
+
+
 }
