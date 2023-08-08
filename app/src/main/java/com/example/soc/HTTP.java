@@ -60,9 +60,9 @@ public class HTTP {
         connection.setRequestProperty("Accept", "application/json");
 
         connection.setRequestMethod("POST");
-        connection.setDoOutput(true); // Set this to true to allow sending data in the request body
+        connection.setDoOutput(true);
 
-        // Write the JSON data to the output stream
+
         try (OutputStream outputStream = connection.getOutputStream()) {
             outputStream.write(data.getBytes("UTF-8"));
         }
@@ -70,7 +70,7 @@ public class HTTP {
         connection.connect();
 
         if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-            // Read the response
+
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder response = new StringBuilder();
             String line;
@@ -80,7 +80,7 @@ public class HTTP {
             bufferedReader.close();
             return response.toString();
         } else {
-            // Handle error response
+
             throw new IOException("HTTP request failed with status code: " + connection.getResponseCode());
         }
     }

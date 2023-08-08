@@ -34,6 +34,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private  static  String url ="http://192.168.31.107:5002/api";
     EditText emailTextField;
+    EditText passwordTextField;
     private LinearLayout linearLayout;
 
     @Override
@@ -43,18 +44,20 @@ public class MainActivity extends AppCompatActivity {
 
         emailTextField = findViewById(R.id.emailTextField);
         linearLayout = findViewById(R.id.linearLayout);
+        passwordTextField = findViewById(R.id.passwordTextField);
 
     }
 
 
 
     public void onTapLogin(View view){
-
+        String email = emailTextField.getText().toString();
+        String password = passwordTextField.getText().toString();
         try {
             /*if(!isValidEmail(emailTextField.toString())){*/
                 /*Intent intent = new Intent(this, HomeScreen.class);
                 startActivity(intent);*/
-                UserDto user = new UserDto("string","string");
+                UserDto user = new UserDto(email,password);
                 Gson gson = new Gson();
                 String userData = gson.toJson(user);
 
@@ -89,15 +92,9 @@ public class MainActivity extends AppCompatActivity {
     public void onTapRegister(View view){
         Intent intent = new Intent(this, RegisterScreen.class);
         startActivity(intent);
-
-
-
-
-
-
-
     }
 
+    //валидация почты
     private boolean isValidEmail(String email){
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
