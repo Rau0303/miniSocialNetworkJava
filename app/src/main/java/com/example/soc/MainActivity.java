@@ -1,8 +1,5 @@
 package com.example.soc;
 
-import static java.lang.System.out;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -15,20 +12,9 @@ import android.util.Patterns;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.example.soc.models.User;
 import com.example.soc.models.UserDto;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -54,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         String email = emailTextField.getText().toString();
         String password = passwordTextField.getText().toString();
         try {
-            /*if(!isValidEmail(emailTextField.toString())){*/
+            if(!isValidEmail(emailTextField.toString())){
                 /*Intent intent = new Intent(this, HomeScreen.class);
                 startActivity(intent);*/
                 UserDto user = new UserDto(email,password);
@@ -69,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
                         Token t= new Token();
                         t.setToken(response);
 
-
                     }
 
                     @Override
@@ -78,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-           /* }*/
+           }
         }
         catch (Error e){
             Log.e("Error",e.toString());

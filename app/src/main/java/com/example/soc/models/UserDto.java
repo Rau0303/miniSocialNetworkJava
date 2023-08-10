@@ -3,18 +3,34 @@ package com.example.soc.models;
 public class UserDto {
     private String login;
     private String password;
-    private String email;
 
-    public UserDto(String login, String password, String email) {
+
+    public UserDto(String login,String password){
         this.login = login;
         this.password = password;
-        this.email = email;
-    }
-    public UserDto(String email,String password){
-        this.email = email;
-        this.password = password;
-        this.login = "";
     }
 
     // Геттеры и сеттеры (по необходимости)
+
+    public void setLogin(String login){
+        this.login = login;
+    }
+    public String getLogin(){
+        return login;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+    public String getPassword(){
+        return password;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

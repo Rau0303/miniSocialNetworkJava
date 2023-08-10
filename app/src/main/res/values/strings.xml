@@ -31,6 +31,8 @@
     <string name="deleteAccount">Удалить аккаунт</string>
     <string name="ageTextField">Возраст</string>
     <string name="buttonSave">Сохранить</string>
+    <string name="firstNameTextField">имя</string>
+    <string name="lastNameTextField">фамилия</string>
 
 
     <!--myNotes-->

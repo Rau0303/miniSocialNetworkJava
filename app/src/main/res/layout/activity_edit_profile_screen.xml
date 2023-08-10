@@ -56,26 +56,14 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/photoURL"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:textAlignment="textEnd"
             app:srcCompat="@drawable/ic_baseline_account_circle_24" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress4"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="20dp"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/border_radius_text_field"
-            android:hint="@string/usernameTextField"
-
-            />
-
-        <EditText
-            android:id="@+id/editTextTextEmailAddress5"
+            android:id="@+id/firstNameTextField"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
@@ -83,20 +71,24 @@
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:background="@drawable/border_radius_text_field"
-            android:hint="@string/emailTextField"
-            />
+            android:hint="@string/firstNameTextField"
 
+            />
         <EditText
-            android:id="@+id/editTextDate"
+            android:id="@+id/lastNameTextField"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="20dp"
-            android:padding="10dp"
             android:ems="10"
-            android:inputType="date"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
             android:background="@drawable/border_radius_text_field"
-            android:hint="@string/ageTextField"
+            android:hint="@string/lastNameTextField"
+
             />
+
+
+
 
         <Button
             android:id="@+id/button3"

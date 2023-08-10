@@ -26,12 +26,23 @@
         />
 
     <EditText
-        android:id="@+id/usernameTextField"
+        android:id="@+id/firstNameTextField"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginBottom="20dp"
         android:ems="10"
-        android:hint="@string/usernameTextField"
+        android:hint="@string/firstNameTextField"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/border_radius_text_field"
+        android:padding="20dp"
+        />
+    <EditText
+        android:id="@+id/lastNameTextField"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="@string/lastNameTextField"
         android:inputType="textEmailAddress"
         android:background="@drawable/border_radius_text_field"
         android:padding="20dp"
