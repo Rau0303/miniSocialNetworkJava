@@ -5,7 +5,7 @@ public class UserDto {
     private String password;
 
 
-    public UserDto(String login,String password){
+    public UserDto(String login, String password, String email, String s){
         this.login = login;
         this.password = password;
     }

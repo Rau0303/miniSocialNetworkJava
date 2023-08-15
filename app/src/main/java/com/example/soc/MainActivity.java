@@ -16,9 +16,9 @@ import com.example.soc.models.UserDto;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
-
 public class MainActivity extends AppCompatActivity {
-    private  static  String url ="http://192.168.31.107:5002/api";
+    private static final String TAG = "MainActivity";
+    private static final String BASE_URL = "http://192.168.31.107:5002/api";
     EditText emailTextField;
     EditText passwordTextField;
     private LinearLayout linearLayout;
@@ -31,85 +31,65 @@ public class MainActivity extends AppCompatActivity {
         emailTextField = findViewById(R.id.emailTextField);
         linearLayout = findViewById(R.id.linearLayout);
         passwordTextField = findViewById(R.id.passwordTextField);
-
     }
 
-
-
-    public void onTapLogin(View view){
+    public void onTapLogin(View view) {
         String email = emailTextField.getText().toString();
         String password = passwordTextField.getText().toString();
-        try {
-            if(!isValidEmail(emailTextField.toString())){
-                /*Intent intent = new Intent(this, HomeScreen.class);
-                startActivity(intent);*/
-                UserDto user = new UserDto(email,password);
-                Gson gson = new Gson();
-                String userData = gson.toJson(user);
 
-                HTTP h = new HTTP();
-                h.makeHttpRequestInBackground(url + "/auth/login", userData, new HTTP.OnRequestCompletedListener() {
-                    @Override
-                    public void onRequestCompleted(String response) {
-                        Log.e("Response",response);
-                        Token t= new Token();
-                        t.setToken(response);
+        if (!isValidEmail(email)) {
+            UserDto user = new UserDto(email, password, email, password);
+            Gson gson = new Gson();
+            String userData = gson.toJson(user);
 
-                    }
+            HTTP h = new HTTP(new HTTP.OnRequestCompletedListener() {
+                @Override
+                public void onRequestCompleted(String response) {
+                    Log.e(TAG, "Response: " + response);
+                    Token t = new Token();
+                    t.setToken(response);
+                    Snackbar.make(linearLayout, "Запрос успешно выполнен", Snackbar.LENGTH_SHORT).show();
+                }
 
-                    @Override
-                    public void onRequestError(Exception e) {
-                        Log.e("error",e.toString());
-                    }
-                });
+                @Override
+                public void onRequestError(Exception e) {
+                    Log.e(TAG, "Error: " + e.toString());
+                    Snackbar.make(linearLayout, "Произошла ошибка: " + e.getMessage(), Snackbar.LENGTH_LONG).show();
+                }
+            });
 
-           }
+            h.makeHttpRequestInBackground(BASE_URL + "/auth/login", userData);
         }
-        catch (Error e){
-            Log.e("Error",e.toString());
-            Snackbar snackbar = Snackbar.make(linearLayout,"Что то пошло не так!", Snackbar.LENGTH_INDEFINITE);
-            snackbar.show();
-
-        }
-
     }
 
-    public void onTapRegister(View view){
+    public void onTapRegister(View view) {
         Intent intent = new Intent(this, RegisterScreen.class);
         startActivity(intent);
     }
 
-    //валидация почты
-    private boolean isValidEmail(String email){
+    private boolean isValidEmail(String email) {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
+    private class Token {
+        private String TokenKey = "com.example.app.token";
+        private SharedPreferences sharedPref;
+        private String token;
+        private String tokenType = "Bearer";
+        private String result = tokenType + " " + token;
 
-    // Deserialize JSON data into a Java class using Gson
-    private  <T> T deserializeJson(String jsonData, Class<T> clazz) {
-        Gson gson = new Gson();
-        return gson.fromJson(jsonData, clazz);
-    }
-    public  class  Token{
-        private  String TokenKey = "com.example.app.token";
-        private  SharedPreferences sharedPref;
-        private  String token;
-        private  String tokenType="Berear";
-        private  String result=tokenType+" "+token;
-        public  Token(){
-            result=sharedPref.getString(TokenKey,"");
-             sharedPref = getApplication().getSharedPreferences(
-                    TokenKey, Context.MODE_PRIVATE);
+        public Token() {
+            sharedPref = getApplication().getSharedPreferences(TokenKey, Context.MODE_PRIVATE);
+            result = sharedPref.getString(TokenKey, "");
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+            sharedPref.edit().putString(TokenKey, getResult()).apply();
         }
 
         public String getResult() {
             return result;
-        }
-
-        public void setToken(String token) {
-
-            this.token = token;
-            sharedPref.edit().putString(TokenKey,getResult());
         }
     }
 }

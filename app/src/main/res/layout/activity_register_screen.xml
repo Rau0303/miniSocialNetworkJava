@@ -8,7 +8,9 @@
     android:orientation="vertical"
     android:padding="20dp"
     android:paddingTop="40dp"
-    android:textAlignment="textEnd">
+    android:textAlignment="textEnd"
+    android:id="@+id/linearLayout"
+    >
 
 
     <TextView

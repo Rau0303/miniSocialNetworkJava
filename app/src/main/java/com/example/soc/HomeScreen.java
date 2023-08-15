@@ -18,4 +18,6 @@ public class HomeScreen extends AppCompatActivity {
         Intent intent = new Intent(this, ProfileScreen.class);
         startActivity(intent);
     }
+
+
 }

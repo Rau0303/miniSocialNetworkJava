@@ -10,6 +10,11 @@ public class UpdateProfile {
         this.lastName = lastName;
         this.photoUrl = photoUrl;
     }
+    public UpdateProfile(String firstName,String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.photoUrl = "";
+    }
 
 
     public void setFirstName(String firstName){

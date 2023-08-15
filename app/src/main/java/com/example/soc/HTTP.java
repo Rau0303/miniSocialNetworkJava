@@ -16,18 +16,30 @@ public class HTTP {
 
         void onRequestError(Exception e);
     }
-    public  void getdata(){}
 
-    public  void makeHttpRequestInBackground(String url, String data, OnRequestCompletedListener listener) {
-        new HttpRequestTask(listener).execute(url, data);
+    private OnRequestCompletedListener listener;
+
+    public HTTP(OnRequestCompletedListener listener) {
+        this.listener = listener;
     }
 
-    public static class HttpRequestTask extends AsyncTask<String, Void, String> {
-        private final OnRequestCompletedListener listener;
+    public void makeHttpRequestInBackground(String url, String data) {
+        new HttpRequestTask().execute(url, data);
+    }
 
-        HttpRequestTask(OnRequestCompletedListener listener) {
-            this.listener = listener;
-        }
+    public void makeHttpPutRequestInBackground(String url, String data) {
+        new HttpPutRequestTask().execute(url, data);
+    }
+
+    public void makeHttpDeleteRequestInBackground(String url) {
+        new HttpDeleteRequestTask().execute(url);
+    }
+
+    public void makeHttpUpdateRequestInBackground(String url, String data) {
+        new HttpUpdateRequestTask().execute(url, data);
+    }
+
+    private class HttpRequestTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... params) {
@@ -41,47 +53,92 @@ public class HTTP {
 
         @Override
         protected void onPostExecute(String result) {
-            if (listener != null) {
-                if (result != null) {
-                    listener.onRequestCompleted(result);
-                } else {
-                    listener.onRequestError(new IOException("HTTP request failed or returned empty response."));
-                }
-            }
+            handleRequestResult(result);
         }
     }
 
-    private static String makeHttpRequest(String url, String data) throws IOException {
-        URL apiUrl = new URL(url);
-        HttpURLConnection connection = (HttpURLConnection) apiUrl.openConnection();
-        connection.setReadTimeout(10000);
-        connection.setConnectTimeout(15000);
-        connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-        connection.setRequestProperty("Accept", "application/json");
+    private class HttpPutRequestTask extends AsyncTask<String, Void, String> {
 
-        connection.setRequestMethod("POST");
-        connection.setDoOutput(true);
-
-
-        try (OutputStream outputStream = connection.getOutputStream()) {
-            outputStream.write(data.getBytes("UTF-8"));
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                return makeHttpPutRequest(params[0], params[1]);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
         }
 
-        connection.connect();
+        @Override
+        protected void onPostExecute(String result) {
+            handleRequestResult(result);
+        }
+    }
 
-        if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+    private class HttpDeleteRequestTask extends AsyncTask<String, Void, String> {
 
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuilder response = new StringBuilder();
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                response.append(line);
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                return makeHttpDeleteRequest(params[0]);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
             }
-            bufferedReader.close();
-            return response.toString();
-        } else {
+        }
 
-            throw new IOException("HTTP request failed with status code: " + connection.getResponseCode());
+        @Override
+        protected void onPostExecute(String result) {
+            handleRequestResult(result);
+        }
+    }
+
+    private class HttpUpdateRequestTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                return makeHttpUpdateRequest(params[0], params[1]);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            handleRequestResult(result);
+        }
+    }
+
+    private String makeHttpRequest(String url, String data) throws IOException {
+        // Реализация метода для отправки запроса POST
+        return data;
+    }
+
+    private String makeHttpPutRequest(String url, String data) throws IOException {
+        // Реализация метода для отправки запроса PUT
+
+        return data;
+    }
+
+    private String makeHttpDeleteRequest(String url) throws IOException {
+        // Реализация метода для отправки запроса DELETE
+        return url;
+    }
+
+    private String makeHttpUpdateRequest(String url, String data) throws IOException {
+        // Реализация метода для отправки запроса UPDATE
+        return data;
+    }
+
+    private void handleRequestResult(String result) {
+        if (listener != null) {
+            if (result != null) {
+                listener.onRequestCompleted(result);
+            } else {
+                listener.onRequestError(new IOException("HTTP request failed or returned empty response."));
+            }
         }
     }
 }

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddNote">
+    tools:context=".AddNote"
+    android:id="@+id/constraintLayout"
+    >
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -83,7 +85,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/editTextTextEmailAddress9"
+                    android:id="@+id/titleTextField"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="20dp"
@@ -94,7 +96,7 @@
                     android:padding="10dp" />
 
                 <EditText
-                    android:id="@+id/editTextTextEmailAddress8"
+                    android:id="@+id/descriptionTextField"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="20dp"
@@ -108,14 +110,16 @@
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/publishButton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="15dp"
             android:layout_marginTop="30dp"
             android:background="@drawable/border_radius_button"
             android:text="@string/buttonPublich"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:onClick="onTapPublish"
+            />
 
     </LinearLayout>
 
